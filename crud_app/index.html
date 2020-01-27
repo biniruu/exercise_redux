@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.js"></script>
 </head>
 <body>
   
   <div id="subject"></div>
   <div id="TOC"></div>
   <div id="control"></div>
-  <div id="article"></div>
+  <div id="content"></div>
   
   <script>
     function subject() {
@@ -24,11 +25,24 @@
     }
     
     function TOC() {
+      var state = store.getState();
+      var i = 0;
+      var liTags = '';
+      
+      while (i < state.contents.length) {
+        liTags = liTags + `
+          <li>
+            <a href="${state.contents[i].id}">${state.contents[i].title}</a>
+          </li>
+        `;
+          
+        i++;
+      }
+      
       document.querySelector('#TOC').innerHTML = `
         <nav>
           <ol>
-            <li><a href="1.html">HTML</a></li>
-            <li><a href="2.html">CSS</a></li>
+            ${liTags}
           </ol>
         </nav>
       `;
@@ -51,6 +65,24 @@
         </article>
       `;
     }
+    
+    function reducer(state = 0, action) {
+      if (!state) {
+        return {
+          contents: [
+            {id: 1, title: 'HTML', desc: 'HTML is ...'},
+            {id: 2, title: 'CSS', desc: 'CSS is ...'},
+          ],
+        };
+      }
+    }
+    
+    var store = Redux.createStore(reducer);
+    
+    subject();
+    TOC();
+    control();
+    article();
   </script>
   
 </body>
