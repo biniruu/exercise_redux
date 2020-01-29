@@ -12,15 +12,8 @@ class App extends Component {
     return (
       <div>
         <h1>Root</h1>
-        <AddNumberRoot onClick={(size) => {
-          // this.setState({
-          //   number: this.state.number + size,
-          // });
-          this.setState((prevState) => ({
-            number: prevState.number + size,
-          }));
-        }}></AddNumberRoot>
-        <DisplayNumberRoot number={this.state.number}></DisplayNumberRoot>
+        <AddNumberRoot></AddNumberRoot>
+        <DisplayNumberRoot></DisplayNumberRoot>
       </div>
     );
   }
