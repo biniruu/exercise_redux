@@ -20,7 +20,7 @@ class App extends Component {
             number: prevState.number + size,
           }));
         }}></AddNumberRoot>
-        <DisplayNumberRoot></DisplayNumberRoot>
+        <DisplayNumberRoot number={this.state.number}></DisplayNumberRoot>
       </div>
     );
   }

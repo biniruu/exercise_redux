@@ -12,10 +12,11 @@ export default class AddNumber extends Component {
         <input type="button" value="+" onClick={() => {
           this.props.onClick(this.state.size);
         }}></input>
-        <input type="text" value="0" onChange={(e) => {
+        <input type="text" value={this.state.size} onChange={(e) => {
           this.setState({
             size: Number(e.target.value),
           });
+          console.log(this.state.size, e.target.value);
         }}></input>
       </div>
     )
